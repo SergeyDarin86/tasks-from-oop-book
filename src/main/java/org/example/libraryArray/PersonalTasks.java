@@ -28,6 +28,7 @@ public class PersonalTasks {
         findTriangleWithMaxHypotenuse(ints);
         findScalarMultiplicationBetweenTwoVectors();
         findAverageLengthOfRadiusVectors(ints);
+        findDifferenceBetweenMaxAndMinValues(ints);
     }
 
     //1
@@ -231,5 +232,17 @@ public class PersonalTasks {
         System.out.println(Arrays.stream(lengthOfVectors).average().getAsDouble() + ": Average length of Vectors");
     }
 
+    //12 and 13
+    static void findDifferenceBetweenMaxAndMinValues(int[] ints) {
+        int[] intsA = Arrays.stream(ints).map(value -> (int) (Math.random() * (MAX - MIN) + MIN)).toArray();
+        System.out.println("======================================");
+        System.out.println(Arrays.toString(intsA));
+        int maxValue = Arrays.stream(intsA).max().getAsInt();
+        int minValue = Arrays.stream(intsA).min().getAsInt();
+        System.out.println((maxValue - minValue) + ": Difference between max an min values");
+
+        double average = (double)(maxValue + minValue) / 2;
+        System.out.println(average + ": average between max and min");
+    }
 
 }
