@@ -2,7 +2,7 @@ package org.example.libraryArray;
 
 import java.util.Arrays;
 
-public class PersonalTasks {
+public class PersonalTasksChapter1Part1 {
 
     static final int N = 4;
     static final int MIN = 1;
@@ -29,6 +29,8 @@ public class PersonalTasks {
         findScalarMultiplicationBetweenTwoVectors();
         findAverageLengthOfRadiusVectors(ints);
         findDifferenceBetweenMaxAndMinValues(ints);
+        findRadiusOfCircle(ints);
+        findGeometricMeanValue(ints);
     }
 
     //1
@@ -243,6 +245,43 @@ public class PersonalTasks {
 
         double average = (double)(maxValue + minValue) / 2;
         System.out.println(average + ": average between max and min");
+    }
+
+    //14
+    static void findRadiusOfCircle(int[] ints){
+        int[] intsX = Arrays.stream(ints).map(value -> (int) (Math.random() * (MAX - MIN) + MIN)).toArray();
+        int[] intsY = Arrays.stream(ints).map(value -> (int) (Math.random() * (MAX - MIN) + MIN)).toArray();
+
+        System.out.println("======================================");
+        System.out.println(Arrays.toString(intsX));
+        System.out.println(Arrays.toString(intsY));
+
+        double[] radiusOfCircles = new double[N];
+
+        for (int x = 0; x < intsX.length; x++) {
+            for (int y = 0; y < intsY.length; y++) {
+                if (x == y)
+                    radiusOfCircles[x] = Math.round(Math.hypot(intsX[x], intsY[y]) * 10.0 / 10.0);
+            }
+        }
+        double maxRadius = Arrays.stream(radiusOfCircles).max().getAsDouble();
+        System.out.println(Arrays.toString(radiusOfCircles));
+        System.out.println(maxRadius + ": Min radius of circle");
+    }
+
+    //15
+    // среднее геометрическое: перемножаем числа между собой и высчитываем корень в степени, равный количеству этих чисел
+    static void findGeometricMeanValue(int[] ints) {
+        int[] intsA = Arrays.stream(ints).map(value -> (int) (Math.random() * (MAX - MIN) + MIN)).toArray();
+        System.out.println("======================================\n#15");
+        System.out.println(Arrays.toString(intsA));
+
+        int multiplication = Arrays.stream(intsA).reduce((acc,b) -> acc * b).getAsInt();
+        double geometricMeanValue =Math.pow(multiplication, (double) 1 / intsA.length);
+        System.out.println((Math.round(geometricMeanValue * 100.0) / 100.0) + ": geometricValue");
+
+        long countOfElementsLessThanGeometric = Arrays.stream(intsA).filter(value -> value < geometricMeanValue).count();
+        System.out.println(countOfElementsLessThanGeometric + ": count of elements that less tan geometricValue");
     }
 
 }
