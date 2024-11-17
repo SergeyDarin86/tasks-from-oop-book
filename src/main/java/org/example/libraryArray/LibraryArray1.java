@@ -3,7 +3,7 @@ package org.example.libraryArray;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class LibraryArray {
+public class LibraryArray1 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n;
@@ -11,21 +11,21 @@ public class LibraryArray {
         do {
             System.out.println("Введите натуральное число");
             n = in.nextInt();
-        } while (Library.conditionVerify(n) == false);
+        } while (Library1.conditionVerify(n) == false);
         in.close();
 
         final int MIN = 0;
         final int MAX = 10;
 
-        int[] a = Library.generationArray(MIN, MAX, n);
+        int[] a = Library1.generationArray(MIN, MAX, n);
         System.out.println(Arrays.toString(a));
-        Library obj = new Library();
+        Library1 obj = new Library1();
         obj.maxIndex(a);
         System.out.println("Минимальное значение: " + obj.min(a) + "\nИндекс последнего максимального значения: " + obj.getMaxInd());
     }
 }
 
-class Library {
+class Library1 {
 
     private int indMax = 0;
 
