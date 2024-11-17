@@ -1,4 +1,4 @@
-package org.example.libraryArray;
+package org.example.libraryArray.chapter1point1;
 
 import java.util.Arrays;
 import java.util.Scanner;
