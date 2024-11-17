@@ -25,7 +25,9 @@ public class PersonalTasksChapter1Part2 {
 //        findArithmeticMean();
 //        findCountOfElementsThatDividedBy4WithZeroRemain();
 //        findMultiplicationOfElementsThatOutOfBorder();
-        findSumOfRemains();
+//        findSumOfRemains();
+//        findGeometricMeanValueOfElementsWithEvenIndexes();
+        findArithmeticMeanOfElementsThatDividedBy3WithZeroRemain();
     }
 
     public static int[] getArray() {
@@ -220,6 +222,47 @@ public class PersonalTasksChapter1Part2 {
         System.out.println(sum + ": sum");
     }
 
+    //15
+    static void findGeometricMeanValueOfElementsWithEvenIndexes() {
+        System.out.println("============================ #15");
+        int[] array = getArray();
+        System.out.println(Arrays.toString(array));
+
+        int count = 0;
+        int multiplication = 1;
+
+        for (int i = 0; i < array.length; i++) {
+            if (i % 2 == 0) {
+                count++;
+                multiplication *= array[i];
+            }
+        }
+
+        double geometricMeanValue = Math.pow(multiplication, (double) 1 / count);
+        System.out.println((Math.round(geometricMeanValue * 100.0) / 100.0) + ": geometricValue");
+
+    }
+
+    //16
+    static void findArithmeticMeanOfElementsThatDividedBy3WithZeroRemain() {
+        System.out.println("============================ #16");
+        int[] array = getArray();
+        System.out.println(Arrays.toString(array));
+        int count = 0;
+        int sum = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 3 == 0) {
+                count++;
+                sum += array[i];
+            }
+        }
+
+        if (count != 0) {
+            double arithmeticMean = (double) sum / count;
+            System.out.println(arithmeticMean + ": arithmeticMean");
+        }
+    }
 
 
 }
