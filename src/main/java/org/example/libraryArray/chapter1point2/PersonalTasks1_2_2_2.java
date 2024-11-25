@@ -20,7 +20,8 @@ public class PersonalTasks1_2_2_2 {
 //        findFirstPositiveElement(doubles);
 //        findCountOfEvenElements(doubles);
 //        replaceSecondOrOtherElement(doubles);
-        defineWhatTheArrayIs(doubles);
+//        defineWhatTheArrayIs(doubles);
+        defineElementsAreOrderedOrNot(doubles);
     }
 
     //1
@@ -210,7 +211,43 @@ public class PersonalTasks1_2_2_2 {
     }
 
     //9
-    static void some(double[] doubles){
+    static void defineElementsAreOrderedOrNot(double[] doubles){
+
+        double min = doubles[0];
+        double max = doubles[0];
+        int indexMin = 0;
+        int indexMax = 0;
+        double temporary = 0;
+
+        for (int i = 1; i < doubles.length; i++){
+            if (min > doubles[i]){
+                min = doubles[i];
+                indexMin = i;
+            }
+            if (max < doubles[i]){
+                max = doubles[i];
+                indexMax = i;
+            }
+        }
+
+        int count = 0;
+        for (int i = 0; i < doubles.length - 1; i++) {
+            if (doubles[i] < doubles[i + 1]) {
+                count++;
+            } else if (doubles[i] > doubles[i + 1]){
+                System.out.println((i + 1) + ": index with disorder");
+                doubles[i + 1] += 2;
+                break;
+            }
+        }
+
+        if (count == doubles.length - 1) {
+            temporary = doubles[indexMin];
+            doubles[indexMin] = doubles[indexMax];
+            doubles[indexMax] = temporary;
+        }
+
+        System.out.println(Arrays.toString(doubles));
 
     }
 }
