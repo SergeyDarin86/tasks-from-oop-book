@@ -21,7 +21,8 @@ public class PersonalTasks1_2_2_2 {
 //        findCountOfEvenElements(doubles);
 //        replaceSecondOrOtherElement(doubles);
 //        defineWhatTheArrayIs(doubles);
-        defineElementsAreOrderedOrNot(doubles);
+//        defineElementsAreOrderedOrNot(doubles);
+        findFirstEvenelement(doubles);
     }
 
     //1
@@ -211,7 +212,7 @@ public class PersonalTasks1_2_2_2 {
     }
 
     //9
-    static void defineElementsAreOrderedOrNot(double[] doubles){
+    static void defineElementsAreOrderedOrNot(double[] doubles) {
 
         double min = doubles[0];
         double max = doubles[0];
@@ -219,12 +220,12 @@ public class PersonalTasks1_2_2_2 {
         int indexMax = 0;
         double temporary = 0;
 
-        for (int i = 1; i < doubles.length; i++){
-            if (min > doubles[i]){
+        for (int i = 1; i < doubles.length; i++) {
+            if (min > doubles[i]) {
                 min = doubles[i];
                 indexMin = i;
             }
-            if (max < doubles[i]){
+            if (max < doubles[i]) {
                 max = doubles[i];
                 indexMax = i;
             }
@@ -234,7 +235,7 @@ public class PersonalTasks1_2_2_2 {
         for (int i = 0; i < doubles.length - 1; i++) {
             if (doubles[i] < doubles[i + 1]) {
                 count++;
-            } else if (doubles[i] > doubles[i + 1]){
+            } else if (doubles[i] > doubles[i + 1]) {
                 System.out.println((i + 1) + ": index with disorder");
                 doubles[i + 1] += 2;
                 break;
@@ -245,6 +246,41 @@ public class PersonalTasks1_2_2_2 {
             temporary = doubles[indexMin];
             doubles[indexMin] = doubles[indexMax];
             doubles[indexMax] = temporary;
+        }
+
+        System.out.println(Arrays.toString(doubles));
+
+    }
+
+    //10
+    static void findFirstEvenelement(double[] doubles) {
+        doubles = Arrays.stream(doubles).map(value -> Math.round(value)).toArray();
+        System.out.println(Arrays.toString(doubles));
+
+        int firstEvenIndex = 0;
+        for (int i = 0; i < doubles.length; i++) {
+            if (Math.round(doubles[i]) % 2 == 0) {
+                firstEvenIndex = i;
+                break;
+            }
+        }
+        System.out.println(firstEvenIndex);
+
+        double firstNoEvenElement = 1;
+        for (int i = 0; i < doubles.length; i++) {
+            if (Math.round(doubles[i]) % 2 != 0) {
+                firstNoEvenElement = doubles[i];
+                break;
+            }
+        }
+        System.out.println(firstNoEvenElement);
+
+        int newStartPosition = firstEvenIndex + 1;
+
+        for (int i = newStartPosition; i < doubles.length; i++) {
+            if (Math.round(doubles[i]) % 2 == 0) {
+                doubles[i] *= firstNoEvenElement;
+            }
         }
 
         System.out.println(Arrays.toString(doubles));
