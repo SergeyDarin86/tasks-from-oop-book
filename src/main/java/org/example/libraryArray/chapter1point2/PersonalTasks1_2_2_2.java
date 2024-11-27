@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class PersonalTasks1_2_2_2 {
 
     static final int N = 7;
-    static final double MIN = -20;
-    static final double MAX = 20;
+    static final double MIN = -10;
+    static final double MAX = 10;
 
     public static void main(String[] args) {
         double[] doubles = new double[N];
@@ -22,7 +22,9 @@ public class PersonalTasks1_2_2_2 {
 //        replaceSecondOrOtherElement(doubles);
 //        defineWhatTheArrayIs(doubles);
 //        defineElementsAreOrderedOrNot(doubles);
-        findFirstEvenelement(doubles);
+//        findFirstEvenElement(doubles);
+//        differenceBetweenEvenAndNoEvenElements(doubles);
+        some(doubles);
     }
 
     //1
@@ -253,7 +255,7 @@ public class PersonalTasks1_2_2_2 {
     }
 
     //10
-    static void findFirstEvenelement(double[] doubles) {
+    static void findFirstEvenElement(double[] doubles) {
         doubles = Arrays.stream(doubles).map(value -> Math.round(value)).toArray();
         System.out.println(Arrays.toString(doubles));
 
@@ -284,6 +286,37 @@ public class PersonalTasks1_2_2_2 {
         }
 
         System.out.println(Arrays.toString(doubles));
+
+    }
+
+    //11
+    static void differenceBetweenEvenAndNoEvenElements(double[] doubles) {
+
+        double sumEvenElements = 0;
+        double sumNoEvenElements = 0;
+
+        for (int i = 0; i < doubles.length; i++) {
+            if (i % 2 == 0) {
+                sumEvenElements += doubles[i];
+            } else {
+                sumNoEvenElements += doubles[i];
+            }
+        }
+
+        System.out.println(sumEvenElements + ": even");
+        System.out.println(sumNoEvenElements + ": noEven");
+        double difference = sumEvenElements - sumNoEvenElements;
+        System.out.println(difference + ": difference");
+
+        for (int i = 0; i < doubles.length / 2; i++) {
+            doubles[i] += difference;
+        }
+
+        System.out.println(Arrays.toString(doubles));
+    }
+
+    //12
+    static void some(double[] doubles){
 
     }
 }
