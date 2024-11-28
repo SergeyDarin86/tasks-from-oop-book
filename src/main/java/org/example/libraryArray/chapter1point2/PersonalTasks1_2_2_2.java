@@ -24,7 +24,8 @@ public class PersonalTasks1_2_2_2 {
 //        defineElementsAreOrderedOrNot(doubles);
 //        findFirstEvenElement(doubles);
 //        differenceBetweenEvenAndNoEvenElements(doubles);
-        some(doubles);
+        findNumSignChange(doubles);
+//        some();
     }
 
     //1
@@ -316,7 +317,26 @@ public class PersonalTasks1_2_2_2 {
     }
 
     //12
-    static void some(double[] doubles){
+    static void findNumSignChange(double[] doubles) {
+        int numSignChange = 0;
+        for (int i = 0; i < doubles.length - 1; i++) {
+            boolean flag = doubles[i] > 0;
+            if (flag != doubles[i + 1] > 0) {
+                numSignChange++;
+            }
+        }
+
+        if (numSignChange > 0) {
+            double difference = doubles[0] - Arrays.stream(doubles).min().getAsDouble();
+            int startElement = numSignChange + 1;
+            for (int i = startElement; i < doubles.length; i++) {
+                doubles[i] = Math.pow(difference, 3);
+            }
+        }
+        System.out.println(Arrays.toString(doubles));
+    }
+
+    static void some() {
 
     }
 }
