@@ -24,8 +24,10 @@ public class PersonalTasks1_2_2_2 {
 //        defineElementsAreOrderedOrNot(doubles);
 //        findFirstEvenElement(doubles);
 //        differenceBetweenEvenAndNoEvenElements(doubles);
-        findNumSignChange(doubles);
-//        some();
+//        findNumSignChange(doubles);
+//        replaceMaxAndMin(doubles);
+//        findCubeOfMaxOrSquareOfMin(doubles);
+        findSumOfMaxAndMinValues(doubles);
     }
 
     //1
@@ -336,7 +338,78 @@ public class PersonalTasks1_2_2_2 {
         System.out.println(Arrays.toString(doubles));
     }
 
-    static void some() {
+    //13
+    static void replaceMaxAndMin(double[] doubles) {
+        int startSecondHalf = doubles.length / 2;
+        double max = doubles[0];
+        int indexMax = 0;
+        double min = doubles[startSecondHalf];
+        int indexMin = 0;
 
+        for (int i = 0; i < doubles.length; i++) {
+            if (i < doubles.length / 2) {
+                if (max > doubles[i]) continue;
+                max = doubles[i];
+                indexMax = i;
+            } else {
+                if (min < doubles[i]) continue;
+                min = doubles[i];
+                indexMin = i;
+            }
+        }
+        System.out.println(max + " - max ");
+        System.out.println(min + " - min ");
+
+
+        for (int i = 0; i < doubles.length; i++) {
+            double temporary = doubles[indexMin];
+            doubles[indexMin] = doubles[indexMax];
+            doubles[indexMax] = temporary;
+        }
+
+        System.out.println(Arrays.toString(doubles));
+
+    }
+
+    //14
+    static void findCubeOfMaxOrSquareOfMin(double[] doubles) {
+        if (doubles[0] > 0) {
+            double cubeOfMax = Math.pow(Arrays.stream(doubles).max().getAsDouble(), 3);
+            System.out.println(cubeOfMax + ": cube of Max");
+        } else {
+            double squareOfMin = Math.pow(Arrays.stream(doubles).min().getAsDouble(), 2);
+            System.out.println(squareOfMin + ": square of Min");
+        }
+    }
+
+    //15
+    static void findSumOfMaxAndMinValues(double[] doubles) {
+        int startSecondHalf = doubles.length / 2;
+        double max = doubles[startSecondHalf];
+        double min = doubles[0];
+        int indexMin = 0;
+
+        for (int i = 0; i < doubles.length; i++) {
+            if (i > doubles.length / 2) {
+                if (max > doubles[i]) continue;
+                max = doubles[i];
+            } else {
+                if (min < doubles[i]) continue;
+                min = doubles[i];
+                indexMin = i;
+            }
+        }
+        System.out.println(max + " - max ");
+        System.out.println(min + " - min ");
+        double sum = max + min;
+        System.out.println(sum + " - sum");
+
+        if (indexMin != 0) {
+            for (int i = 0; i < doubles.length / 2; i++) {
+                doubles[indexMin - 1] = sum;
+            }
+        }
+
+        System.out.println(Arrays.toString(doubles));
     }
 }
