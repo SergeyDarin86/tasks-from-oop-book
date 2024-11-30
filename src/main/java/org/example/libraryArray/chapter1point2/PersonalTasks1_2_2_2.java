@@ -27,7 +27,8 @@ public class PersonalTasks1_2_2_2 {
 //        findNumSignChange(doubles);
 //        replaceMaxAndMin(doubles);
 //        findCubeOfMaxOrSquareOfMin(doubles);
-        findSumOfMaxAndMinValues(doubles);
+//        findSumOfMaxAndMinValues(doubles);
+        findMaxAndMinOfDifference(doubles);
     }
 
     //1
@@ -409,6 +410,26 @@ public class PersonalTasks1_2_2_2 {
                 doubles[indexMin - 1] = sum;
             }
         }
+
+        System.out.println(Arrays.toString(doubles));
+    }
+
+    //16
+    static void findMaxAndMinOfDifference(double[] doubles){
+
+        double[] doublesDifference = new double[doubles.length - 1];
+
+        for (int i = 0; i < doubles.length - 1; i++){
+            double difference = doubles[i + 1] - doubles[i];
+            doublesDifference[i] = difference;
+        }
+
+        System.out.println(Arrays.toString(doublesDifference));
+        double max = Arrays.stream(doublesDifference).max().getAsDouble();
+        double min = Arrays.stream(doublesDifference).min().getAsDouble();
+
+        doubles[1] = max;
+        doubles[doubles.length - 1] = min;
 
         System.out.println(Arrays.toString(doubles));
     }
