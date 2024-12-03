@@ -6,15 +6,17 @@ public class PersonalTask2_1_4_1 {
     static final int MIN = 0;
     static final int MAX = 10;
 
-    static final int N = 4;
-    static final int M = 4;
+    static final int N = 6;
+    static final int M = 6;
 
     public static void main(String[] args) {
 
         int[] array = generationArray();
         System.out.println(toString(array));
 
-        findMaxSumOnSubstrings(array);
+//        findMaxSumOnSubstrings(array);
+//        some(array);
+        findMaxSumOfAbsValues(array);
     }
 
     public static int[] generationArray() {
@@ -53,6 +55,22 @@ public class PersonalTask2_1_4_1 {
 
         System.out.println("------------");
         System.out.println(Arrays.stream(arrayOfSum).max().getAsInt() + ": max sum");
+    }
+
+    //2
+    public static void findMaxSumOfAbsValues(int[] array) {
+
+        int[] arrayOfSum = new int[N / 2];
+
+        for (int i = N / 2; i < M; i++) {
+            int sum = 0;
+            for (int j = 0; j < M / 2; j++) {
+                sum += array[j * M + i];
+            }
+            arrayOfSum[i - N / 2] = sum;
+        }
+        System.out.println(Arrays.toString(arrayOfSum));
+        System.out.println(Arrays.stream(arrayOfSum).map(value -> Math.abs(value)).max().getAsInt() + ": Max sum of abs values");
     }
 
 }
