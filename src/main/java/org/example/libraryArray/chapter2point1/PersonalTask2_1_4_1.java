@@ -17,7 +17,11 @@ public class PersonalTask2_1_4_1 {
 //        findMaxSumOnSubstrings(array);
 //        findMaxSumOfAbsValues(array);
 //        findMaxSumOfElementsThatMoreZero(array);
-        findMinSumOfElementsOnSubstrings(array);
+//        findMinSumOfElementsOnSubstrings(array);
+//        findMinSumOfAbsValues(array);
+//        findMaxGeometricValue(array);
+//        findMaxSumOnSubstringsElementsThatMoreZero(array);
+        findMaxSumOfElementsOnColumns(array);
     }
 
     public static int[] generationArray() {
@@ -105,6 +109,68 @@ public class PersonalTask2_1_4_1 {
 
         System.out.println("------------");
         System.out.println(Arrays.stream(arrayOfSum).min().getAsInt() + ": min sum");
+    }
+
+    //5
+    public static void findMinSumOfAbsValues(int[] array) {
+        int[] arraySumOfAbsValues = new int[N];
+
+        for (int i = 0; i < N; i++) {
+            int sum = 0;
+            for (int j = 0; j < M; j++) {
+                sum += Math.abs(array[i * M + j]);
+            }
+            arraySumOfAbsValues[i] = sum;
+        }
+
+        System.out.println(Arrays.stream(arraySumOfAbsValues).min().getAsInt() + ": min sum");
+    }
+
+    //6
+    public static void findMaxGeometricValue(int[] array) {
+        double[] arrayOfGeometricValues = new double[N / 2];
+
+        for (int i = N / 2; i < N; i++) {
+            int multiplication = 1;
+            for (int j = M / 2; j < M; j++) {
+                multiplication *= array[i * M + j];
+            }
+            double geometricValue = Math.pow(multiplication, (float) 1 / (N / 2));
+            arrayOfGeometricValues[i - (N / 2)] = geometricValue;
+        }
+
+        System.out.println(Arrays.stream(arrayOfGeometricValues).max().getAsDouble() + ": Max geometric value");
+    }
+
+    //7
+    public static void findMaxSumOnSubstringsElementsThatMoreZero(int[] array) {
+        int[] arrayOfSum = new int[N];
+
+        for (int i = 0; i < N; i++) {
+            int sum = 0;
+            for (int j = 0; j < M; j++) {
+                if (array[i * M + j] < 0) continue;
+                sum += array[i * M + j];
+            }
+            arrayOfSum[i] = sum;
+        }
+
+        System.out.println(Arrays.stream(arrayOfSum).max().getAsInt() + ": Max sum");
+    }
+
+    //8
+    public static void findMaxSumOfElementsOnColumns(int[] array) {
+        int[] arrayOfSum = new int[N - 1];
+        for (int i = 1; i < N; i++) {
+            int sum = 0;
+            for (int j = 0; j < M - 1; j++) {
+                if (j < i)
+                    sum += array[j * M + i];
+            }
+            arrayOfSum[i - 1] = sum;
+        }
+
+        System.out.println(Arrays.stream(arrayOfSum).max().getAsInt() + ": Max sum on columns");
     }
 
 }
