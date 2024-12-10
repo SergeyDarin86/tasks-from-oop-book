@@ -21,7 +21,9 @@ public class PersonalTask2_1_4_1 {
 //        findMinSumOfAbsValues(array);
 //        findMaxGeometricValue(array);
 //        findMaxSumOnSubstringsElementsThatMoreZero(array);
-        findMaxSumOfElementsOnColumns(array);
+//        findMaxSumOfElementsOnColumns(array);
+//        findCountOfColumnsThatMoreThanElement(array);
+//        someMethod(array);
     }
 
     public static int[] generationArray() {
@@ -171,6 +173,24 @@ public class PersonalTask2_1_4_1 {
         }
 
         System.out.println(Arrays.stream(arrayOfSum).max().getAsInt() + ": Max sum on columns");
+    }
+
+    //9
+    public static void findCountOfColumnsThatMoreThanElement(int[] array) {
+        final int S = 10;
+        int count = 0;
+
+        for (int i = 0; i < M; i++) {
+            int sum = 0;
+            for (int j = 0; j < N; j++) {
+                sum += Math.abs(array[j * M + i]);
+            }
+            System.out.println(sum);
+            if (sum > S) count++;
+        }
+
+        System.out.println("--------------------");
+        System.out.println(count + ": count of columns");
     }
 
 }
