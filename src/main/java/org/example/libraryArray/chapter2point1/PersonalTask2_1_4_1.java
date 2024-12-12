@@ -7,7 +7,7 @@ public class PersonalTask2_1_4_1 {
     static final int MAX = 10;
 
     static final int N = 4;
-    static final int M = 4;
+    static final int M = 6;
 
     public static void main(String[] args) {
 
@@ -23,7 +23,8 @@ public class PersonalTask2_1_4_1 {
 //        findMaxSumOnSubstringsElementsThatMoreZero(array);
 //        findMaxSumOfElementsOnColumns(array);
 //        findCountOfColumnsThatMoreThanElement(array);
-//        someMethod(array);
+//        findMaxSumOfElementsOnThirdSection(array);
+        findMaxSumOfElementsOnEvenColumns(array);
     }
 
     public static int[] generationArray() {
@@ -193,4 +194,45 @@ public class PersonalTask2_1_4_1 {
         System.out.println(count + ": count of columns");
     }
 
+    //10
+    public static void findMaxSumOfElementsOnThirdSection(int[] array) {
+        int[] arrayOfSum = new int[M / 2];
+
+        for (int i = 0; i < M / 2; i++) {
+            int sum = 0;
+            for (int j = N / 2; j < N; j++) {
+                sum += Math.abs(array[j * M + i]);
+            }
+            arrayOfSum[i] = sum;
+        }
+
+        System.out.println("----------");
+        System.out.println(Arrays.stream(arrayOfSum).max().getAsInt() + ": Max sum on columns of third section");
+    }
+
+    //11
+    public static void findMaxSumOfElementsOnEvenColumns(int[] array) {
+        int[] arrayOfSum = new int[M / 2];
+
+        for (int i = 0; i < M; i++) {
+            int sum = 0;
+            for (int j = 0; j < N; j++) {
+                if ((i + 1) % 2 == 0) {
+                    sum += array[j * M + i];
+                }
+            }
+            if ((i + 1) % 2 == 0)
+                arrayOfSum[(i - 1) / 2] = sum;
+        }
+
+        System.out.println(Arrays.toString(arrayOfSum));
+        System.out.println(Arrays.stream(arrayOfSum).max().getAsInt() + ": Max sum of elements on even columns");
+    }
+
+    //12
+    public static void some(int[] array){
+//        . Пусть n = m (массив - квадратный). Вычислить наименьшую
+//        сумму элементов, стоящих в «подстолбцах» нижнего треугольника
+//        двумерного массива (под главной диагональю).
+    }
 }
