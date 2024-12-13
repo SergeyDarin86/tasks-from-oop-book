@@ -24,7 +24,10 @@ public class PersonalTask2_1_4_1 {
 //        findMaxSumOfElementsOnColumns(array);
 //        findCountOfColumnsThatMoreThanElement(array);
 //        findMaxSumOfElementsOnThirdSection(array);
-        findMaxSumOfElementsOnEvenColumns(array);
+//        findMaxSumOfElementsOnEvenColumns(array);
+//        findMinSumOfElementsUnderMainDiagonal(array);
+//        findCountOfStringsThatMoreThanSValue(array);
+        findMinGeometricValue(array);
     }
 
     public static int[] generationArray() {
@@ -230,9 +233,50 @@ public class PersonalTask2_1_4_1 {
     }
 
     //12
-    public static void some(int[] array){
-//        . Пусть n = m (массив - квадратный). Вычислить наименьшую
-//        сумму элементов, стоящих в «подстолбцах» нижнего треугольника
-//        двумерного массива (под главной диагональю).
+    public static void findMinSumOfElementsUnderMainDiagonal(int[] array) {
+        int[] arrayOfSum = new int[N - 1];
+
+        for (int i = 0; i < N - 1; i++) {
+            int sum = 0;
+            for (int j = 1; j < N; j++) {
+                if (j > i)
+                    sum += array[j * N + i];
+            }
+            arrayOfSum[i] = sum;
+        }
+
+        System.out.println(Arrays.stream(arrayOfSum).min().getAsInt() + ": Min sum of elements on columns under diagonal");
+    }
+
+    //13
+    public static void findCountOfStringsThatMoreThanSValue(int[] array) {
+        final int S = 18;
+        int count = 0;
+
+        for (int i = 0; i < N; i++) {
+            int sum = 0;
+            for (int j = 0; j < M; j++) {
+                sum += Math.abs(array[i * M + j]);
+            }
+            System.out.println(sum);
+            if (sum > S) count++;
+        }
+
+        System.out.println("-----------\n" + count + ": count of strings, where sum of elements more than S");
+    }
+
+    //14
+    public static void findMinGeometricValue(int[] array) {
+        double[] geometricValuesArray = new double[N / 2];
+
+        for (int i = 0; i < N / 2; i++) {
+            int multiplication = 1;
+            for (int j = 0; j < M / 2; j++) {
+                multiplication *= array[i * M + j];
+            }
+            geometricValuesArray[i] = Math.pow(multiplication, (double) 1 / (M / 2));
+        }
+
+        System.out.println(Arrays.stream(geometricValuesArray).min().getAsDouble() + ": min geometric value");
     }
 }
