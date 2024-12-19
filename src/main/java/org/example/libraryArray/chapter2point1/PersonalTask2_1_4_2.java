@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class PersonalTask2_1_4_2 {
 
-    static final int MIN = 0;
+    static final int MIN = -10;
     static final int MAX = 10;
 
-    static final int N = 4;
+    static final int N = 3;
     static final int M = 4;
 
     public static void main(String[] args) {
@@ -16,7 +16,9 @@ public class PersonalTask2_1_4_2 {
 //        findMaxCountZeroElementsOnColumns(array);
 //        findCountOfLocalMaxValuesForGeometric(array);
 //        findMaxCountNegativeElementsInThirdQuarter(array);
-        some(array);
+//        findCountOfLocalMinimumOnStrings(array);
+//        findMaxSumOfPositiveElementsOnEvenStrings(array);
+        findMaxCountOfPositiveElementsOnColumns(array);
     }
 
     public static int[] generationArray() {
@@ -94,9 +96,54 @@ public class PersonalTask2_1_4_2 {
     }
 
     //5
-    public static void some(int[] array){
-//        Определить количество локальных минимумов сумм модулей
-//        строк (сумма модулей столбца считается локальным минимумом,
-//                когда суммы модулей соседних столбцов больше текущего).
+    public static void findCountOfLocalMinimumOnStrings(int[] array) {
+        int[] arrayOfSum = new int[N];
+
+        for (int i = 0; i < N; i++) {
+            int sum = 0;
+            for (int j = 0; j < M; j++) {
+                sum += Math.abs(array[i * M + j]);
+            }
+            arrayOfSum[i] = sum;
+        }
+
+        int count = 0;
+        for (int i = 1; i < arrayOfSum.length - 1; i++) {
+            if (arrayOfSum[i - 1] > arrayOfSum[i] && arrayOfSum[i + 1] > arrayOfSum[i])
+                count++;
+        }
+
+        System.out.println(count + ": count of local minimum");
+    }
+
+    //6
+    public static void findMaxSumOfPositiveElementsOnEvenStrings(int[] array) {
+        int[] arrayOfSum = new int[N / 2];
+        for (int i = 0; i < N; i++) {
+            int sum = 0;
+            for (int j = 0; j < M; j++) {
+                if (array[i * M + j] < 0 || ((i + 1) % 2 != 0)) continue;
+                sum += array[i * M + j];
+            }
+            if ((i + 1) % 2 == 0)
+                arrayOfSum[(i - 1) / 2] = sum;
+        }
+
+        System.out.println(Arrays.stream(arrayOfSum).max().getAsInt() + ": max sum of positive elements on even strings");
+    }
+
+    //7
+    public static void findMaxCountOfPositiveElementsOnColumns(int[] array) {
+        int[] arrayOfCount = new int[M];
+
+        for (int i = 0; i < M; i++) {
+            int count = 0;
+            for (int j = 0; j < N; j++) {
+                if (array[j * M + i] < 0) continue;
+                count++;
+                arrayOfCount[i] = count;
+            }
+        }
+        System.out.println(Arrays.stream(arrayOfCount).max().getAsInt() + ": max count of positive elements on columns");
     }
 }

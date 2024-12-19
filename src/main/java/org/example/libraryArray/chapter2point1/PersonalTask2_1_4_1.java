@@ -7,7 +7,7 @@ public class PersonalTask2_1_4_1 {
     static final int MAX = 10;
 
     static final int N = 4;
-    static final int M = 6;
+    static final int M = 4;
 
     public static void main(String[] args) {
 
@@ -27,7 +27,9 @@ public class PersonalTask2_1_4_1 {
 //        findMaxSumOfElementsOnEvenColumns(array);
 //        findMinSumOfElementsUnderMainDiagonal(array);
 //        findCountOfStringsThatMoreThanSValue(array);
-        findMinGeometricValue(array);
+//        findMinGeometricValue(array);
+//        findColumnWithMinSumOfAbsValues(array);
+        some(array);
     }
 
     public static int[] generationArray() {
@@ -278,5 +280,28 @@ public class PersonalTask2_1_4_1 {
         }
 
         System.out.println(Arrays.stream(geometricValuesArray).min().getAsDouble() + ": min geometric value");
+    }
+
+    //15
+    public static void findColumnWithMinSumOfAbsValues(int[] array) {
+        int[] arrayOfSum = new int[M];
+
+        for (int i = 0; i < M; i++) {
+            int sum = 0;
+            for (int j = 0; j < N; j++) {
+                sum += Math.abs(array[j * M + i]);
+            }
+            arrayOfSum[i] = sum;
+        }
+
+        System.out.println(Arrays.stream(arrayOfSum).min().getAsInt() + ": The column with min Sum");
+    }
+
+    //16
+    public static void some(int[] array){
+//        Пусть n = m (массив - квадратный). Вычислить наибольшее
+//        скалярное произведение столбца на симметричную относительно
+//        главной диагонали строку
+
     }
 }
