@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class PersonalTask2_1_4_2 {
 
-    static final int MIN = -10;
+    static final int MIN = 0;
     static final int MAX = 10;
 
-    static final int N = 3;
+    static final int N = 4;
     static final int M = 4;
 
     public static void main(String[] args) {
@@ -18,7 +18,9 @@ public class PersonalTask2_1_4_2 {
 //        findMaxCountNegativeElementsInThirdQuarter(array);
 //        findCountOfLocalMinimumOnStrings(array);
 //        findMaxSumOfPositiveElementsOnEvenStrings(array);
-        findMaxCountOfPositiveElementsOnColumns(array);
+//        findMaxCountOfPositiveElementsOnColumns(array);
+//        findMaxCountOfZeroElementsInFirstQuarter(array);
+        findMultiplicationOfMainAndSecondaryDiagonals(array);
     }
 
     public static int[] generationArray() {
@@ -145,5 +147,55 @@ public class PersonalTask2_1_4_2 {
             }
         }
         System.out.println(Arrays.stream(arrayOfCount).max().getAsInt() + ": max count of positive elements on columns");
+    }
+
+    //8
+    public static void findMaxCountOfZeroElementsInFirstQuarter(int[] array) {
+        int[] arrayOfCount = new int[N / 2];
+
+        for (int i = N / 2; i < N; i++) {
+            int count = 0;
+            for (int j = 0; j < N / 2; j++) {
+                if (array[j * M + i] == 0)
+                    count++;
+            }
+            arrayOfCount[i - 2] = count;
+        }
+        System.out.println(Arrays.stream(arrayOfCount).max().getAsInt() + ": max count of zero elements on columns in first quarter");
+    }
+
+    //9
+    public static void findMultiplicationOfMainAndSecondaryDiagonals(int[] array) {
+        int temporary1 = 0;
+        int multiplication1 = 1;
+        int temporary2 = 0;
+        int temporary3 = 0;
+        int temporary4 = 0;
+        int multiplication2 = 1;
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (i == 0 && j == i)
+                    temporary1 = array[i * M + j];
+                if (i == (N - 1) && j == 0) {
+                    temporary2 = array[i * M + j];
+                }
+
+                if (i == (N - 1) && j == i)
+                    temporary3 = array[i * M + j];
+
+
+                if (i == 0 && (j == (N - 1)))
+                    temporary4 = array[i * M + j];
+            }
+        }
+        multiplication1 = temporary1 * temporary2;
+        multiplication2 = temporary3 * temporary4;
+        System.out.println((multiplication1 + multiplication2) + ": scalar multiplication");
+    }
+
+    //10
+    public static void some(int[] array){
+//        Определить минимальное число нулевых элементов в строках
     }
 }
