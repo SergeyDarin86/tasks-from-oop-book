@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class PersonalTask2_1_4_2 {
 
-    static final int MIN = 0;
+    static final int MIN = -10;
     static final int MAX = 10;
 
-    static final int N = 4;
-    static final int M = 4;
+    static final int N = 6;
+    static final int M = 6;
 
     public static void main(String[] args) {
         int[] array = generationArray();
@@ -20,7 +20,10 @@ public class PersonalTask2_1_4_2 {
 //        findMaxSumOfPositiveElementsOnEvenStrings(array);
 //        findMaxCountOfPositiveElementsOnColumns(array);
 //        findMaxCountOfZeroElementsInFirstQuarter(array);
-        findMultiplicationOfMainAndSecondaryDiagonals(array);
+//        findMultiplicationOfMainAndSecondaryDiagonals(array);
+//        findMinCountOfZeroElementsOnStrings(array);
+//        findLocalMinOfGeometricValueOnStrings(array);
+        findMinCountOfPositiveElementsOnSubstringsForSecondQuarter(array);
     }
 
     public static int[] generationArray() {
@@ -195,7 +198,60 @@ public class PersonalTask2_1_4_2 {
     }
 
     //10
-    public static void some(int[] array){
-//        Определить минимальное число нулевых элементов в строках
+    public static void findMinCountOfZeroElementsOnStrings(int[] array) {
+        int[] arrayOfCount = new int[N];
+
+        for (int i = 0; i < N; i++) {
+            int count = 0;
+            for (int j = 0; j < M; j++) {
+                if (array[i * M + j] != 0) continue;
+                count++;
+            }
+            arrayOfCount[i] = count;
+        }
+        System.out.println(Arrays.stream(arrayOfCount).min().getAsInt() + ": min count of zero elements");
+    }
+
+    //11
+    public static void findLocalMinOfGeometricValueOnStrings(int[] array) {
+        double[] arrayOfGeometricMean = new double[N];
+
+        for (int i = 0; i < N; i++) {
+            int multiplication = 1;
+            for (int j = 0; j < M; j++) {
+                multiplication *= array[i * M + j];
+            }
+            double geometricMean = Math.pow(multiplication, (double) 1 / M);
+            arrayOfGeometricMean[i] = geometricMean;
+        }
+
+        System.out.println(Arrays.toString(arrayOfGeometricMean));
+        int count = 0;
+        for (int i = 1; i < N - 1; i++) {
+            if (arrayOfGeometricMean[i] < arrayOfGeometricMean[i - 1] && arrayOfGeometricMean[i] < arrayOfGeometricMean[i + 1])
+                count++;
+        }
+        System.out.println(count + ": count of local min for geometric values on strings");
+    }
+
+    //12
+    public static void findMinCountOfPositiveElementsOnSubstringsForSecondQuarter(int[] array) {
+        int[] arrayOfCount = new int[N / 2];
+
+        for (int i = N / 2; i < N; i++) {
+            int count = 0;
+            for (int j = N / 2; j < N; j++) {
+                if (array[i * N + j] < 0) continue;
+                count++;
+            }
+            arrayOfCount[i - (N / 2)] = count;
+        }
+        System.out.println(Arrays.stream(arrayOfCount).min().getAsInt() + ": min count of positive elements");
+    }
+
+    //13
+    public static void findMinCountOfNegativeElementsForStrings(int[] array){
+//        Определить минимальное число отрицательных элементов в
+//        строках.
     }
 }
